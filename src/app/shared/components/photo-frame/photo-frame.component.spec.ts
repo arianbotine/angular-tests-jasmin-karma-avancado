@@ -66,7 +66,7 @@ describe(PhotoFrameComponent.name, () => {
     expect(element.getAttribute('aria-label')).toBe('0: people liked');
   });
 
-  it(`(D) Should display image with src and description when bound to properties`, () => {
+  it(`(D) Should display image with src and description when bound to properties`, (done) => {
     const description = 'some description';
     const src = 'http://somesite.com/img.jpg';
     component.src = src;
@@ -75,6 +75,33 @@ describe(PhotoFrameComponent.name, () => {
     const element: HTMLImageElement = fixture.nativeElement.querySelector('img');
     expect(element.getAttribute('src')).toBe(src);
     expect(element.getAttribute('alt')).toBe(description);
+    done();
   });
 
+  it(`(D) Should display number of likes when clicked`, (done) => {
+    fixture.detectChanges();
+    component.liked.subscribe(() => {
+      component.likes++;
+      fixture.detectChanges();
+      const counterElement: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
+      expect(counterElement.textContent.trim()).toBe('1')
+      done();
+    });
+    const likeWidgetContainerElement: HTMLElement = fixture.nativeElement.querySelector('.like-widget-container')
+    likeWidgetContainerElement.click();
+  });
+
+  it(`(D) Should display number of likes when ENTER key is pressed`, (done) => {
+    fixture.detectChanges();
+    component.liked.subscribe(() => {
+      component.likes++;
+      fixture.detectChanges();
+      const counterElement: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
+      expect(counterElement.textContent.trim()).toBe('1')
+      done();
+    });
+    const likeWidgetContainerElement: HTMLElement = fixture.nativeElement.querySelector('.like-widget-container')
+    const event = new KeyboardEvent('keyup', { key: 'Enter' });
+    likeWidgetContainerElement.dispatchEvent(event);
+  });
 });
