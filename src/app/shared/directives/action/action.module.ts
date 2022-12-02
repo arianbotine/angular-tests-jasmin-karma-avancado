@@ -9,4 +9,4 @@ import { ActionDirective } from './action.directive';
   ],
   exports: [ActionDirective]
 })
-export class ActionModule { }
+export class ActionDirectiveModule { }
