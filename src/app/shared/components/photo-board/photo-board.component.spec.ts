@@ -1,16 +1,31 @@
+import { PhotoBoardModule } from './photo-board.module';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PhotoBoardComponent } from './photo-board.component';
+import { Photo } from './interfaces/photo';
+import { SimpleChange, SimpleChanges } from '@angular/core';
 
-describe('PhotoBoardComponent', () => {
+function buildPhotoList(): Photo[] {
+  const photos: Photo[] = [];
+  for (let index = 0; index < 8; index++) {
+    photos.push({
+      id: index + 1,
+      url: '',
+      description: '',
+    });
+  }
+  return photos;
+}
+
+describe(PhotoBoardComponent.name, () => {
   let component: PhotoBoardComponent;
   let fixture: ComponentFixture<PhotoBoardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PhotoBoardComponent ]
-    })
-    .compileComponents();
+      declarations: [PhotoBoardComponent],
+      imports: [PhotoBoardModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +34,19 @@ describe('PhotoBoardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Should display rows and columns when (@Input photos) has value', () => {
+    component.photos = buildPhotoList();
+    fixture.detectChanges();
+    const change: SimpleChanges = {
+      photos: new SimpleChange([], component.photos, true),
+    };
+    component.ngOnChanges(change);
+    expect(component.rows.length).withContext('Number of rows').toBe(2);
+    expect(component.rows[0].length)
+      .withContext('Number of columns from the first row')
+      .toBe(4);
+    expect(component.rows[1].length)
+      .withContext('Number of columns from the first row')
+      .toBe(4);
   });
 });

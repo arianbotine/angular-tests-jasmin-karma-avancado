@@ -17,7 +17,7 @@ export class PhotoBoardComponent implements OnChanges {
     }
   }
 
-  public groupColumns(photos: Photo[]): any[][] {
+  private groupColumns(photos: Photo[]): any[][] {
     const newRows = [];
     const step = 4;
     for (let indexPhoto = 0;  indexPhoto < photos.length; indexPhoto += step){
