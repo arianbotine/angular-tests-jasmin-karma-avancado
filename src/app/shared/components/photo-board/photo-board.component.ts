@@ -8,12 +8,12 @@ import { Photo } from './interfaces/photo';
 })
 export class PhotoBoardComponent implements OnChanges {
 
-  @Input() public photo: Photo[];
+  @Input() public photos: Photo[];
   public rows: any[][] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.photo) {
-      this.groupColumns(changes.photo.currentValue);
+    if (changes?.photos?.currentValue) {
+      this.rows = this.groupColumns(changes.photos.currentValue);
     }
   }
 
