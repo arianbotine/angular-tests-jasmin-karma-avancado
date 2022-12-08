@@ -8,7 +8,6 @@ import { PhotoBoardService } from '../photo-board/services/photo-board.service';
 @NgModule({
   declarations: [PhotoListComponent],
   imports: [CommonModule, PhotoBoardModule, FontAwesomeModule],
-  exports: [PhotoListComponent],
-  providers: [PhotoBoardService]
+  exports: [PhotoListComponent]
 })
 export class PhotoListModule {}
