@@ -11,11 +11,6 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   public title = 'Angular testing';
-  public photos$: Observable<Photo[]>;
 
-  constructor(private service: PhotoBoardService) {}
-
-  ngOnInit(): void {
-    this.photos$ = this.service.getPhotos();
-  }
+  ngOnInit(): void {}
 }
