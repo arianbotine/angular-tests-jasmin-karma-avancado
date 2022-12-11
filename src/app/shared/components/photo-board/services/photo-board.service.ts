@@ -9,7 +9,7 @@ import { Photo } from '../interfaces/photo';
   providedIn: 'root',
 })
 export class PhotoBoardService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getPhotos(): Observable<Photo[]> {
     return this.http
