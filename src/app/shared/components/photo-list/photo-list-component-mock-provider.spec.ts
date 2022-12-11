@@ -5,9 +5,6 @@ import { PhotoListModule } from './photo-list.module';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PhotoListComponent } from './photo-list.component';
-import { buildPhotoList } from '../photo-board/test/build-photo-list';
-import { of, Observable } from 'rxjs';
-import { Photo } from '../photo-board/interfaces/photo';
 
 describe(PhotoListComponent.name, () => {
   let component: PhotoListComponent;
