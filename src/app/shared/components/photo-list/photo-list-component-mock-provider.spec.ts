@@ -19,11 +19,14 @@ describe(PhotoListComponent.name, () => {
       providers: [
         {
           provide: PhotoBoardService,
+          useClass: PhotoBoardMockService
+          /*
           useValue: {
             getPhotos(): Observable<Photo[]> {
               return of(buildPhotoList());
             },
           },
+          */
         },
       ],
     }).compileComponents();
